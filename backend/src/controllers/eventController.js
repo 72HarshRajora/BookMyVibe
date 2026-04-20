@@ -1,4 +1,6 @@
 const Event = require('../models/Event');
+const { cloudinary } = require('../utils/cloudinary');
+const fs = require('fs');
 
 // @desc    Create a new event/service
 // @route   POST /api/events
@@ -12,6 +14,18 @@ const createEvent = async (req, res) => {
       return res.status(400).json({ message: 'Image is required' });
     }
 
+    // Upload to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'bookmyvibe',
+    });
+    
+    // Delete local file after upload
+    try {
+      fs.unlinkSync(req.file.path);
+    } catch (err) {
+      console.error('Failed to delete local image file:', err);
+    }
+
     const event = await Event.create({
       vendor: req.user._id,
       title,
@@ -19,7 +33,7 @@ const createEvent = async (req, res) => {
       price: Number(price),
       category,
       availability,
-      imageUrl: req.file.path // Cloudinary URL
+      imageUrl: result.secure_url // Cloudinary URL
     });
 
     res.status(201).json({ message: 'Event created successfully', event });
