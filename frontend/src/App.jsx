@@ -12,6 +12,7 @@ import VendorAddEvent from './pages/VendorAddEvent';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUserProfile from './pages/AdminUserProfile';
 import BookingEdit from './pages/BookingEdit';
+import VendorEditEvent from './pages/VendorEditEvent';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/profile" element={<UserDashboard />} />
           <Route path="/vendor/dashboard" element={<VendorDashboard />} />
           <Route path="/vendor/add-event" element={<VendorAddEvent />} />
+          <Route path="/vendor/edit-event/:id" element={<VendorEditEvent />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/profile/:id" element={<AdminUserProfile />} />
           <Route path="/booking/edit/:id" element={<BookingEdit />} />

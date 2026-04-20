@@ -12,6 +12,7 @@ const VendorDashboard = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedBookingId, setExpandedBookingId] = useState(null);
+  const [processingBookingId, setProcessingBookingId] = useState(null);
 
   useEffect(() => {
     const fetchVendorData = async () => {
@@ -33,12 +34,27 @@ const VendorDashboard = () => {
   }, [user]);
 
   const handleStatusChange = async (bookingId, newStatus) => {
+    setProcessingBookingId(bookingId);
     try {
       await axios.put(`https://bookmyvibe.onrender.com/api/vendor/bookings/${bookingId}/status`, { status: newStatus }, { withCredentials: true });
       setBookings(bookings.map(b => b._id === bookingId ? { ...b, status: newStatus } : b));
       toast.success(`Booking ${newStatus} successfully`);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Failed to update status', { id: 'status-error' });
+    } finally {
+      setProcessingBookingId(null);
+    }
+  };
+
+  const handleDeleteEvent = async (eventId) => {
+    if (window.confirm('Are you sure you want to delete this service?')) {
+      try {
+        await axios.delete(`https://bookmyvibe.onrender.com/api/events/${eventId}`, { withCredentials: true });
+        setEvents(events.filter(e => e._id !== eventId));
+        toast.success('Service deleted successfully');
+      } catch (err) {
+        toast.error(err.response?.data?.message || 'Failed to delete service');
+      }
     }
   };
 
@@ -88,8 +104,8 @@ const VendorDashboard = () => {
                     <td>{event.category}</td>
                     <td>₹{event.price}</td>
                     <td>
-                      <button className="btn btn-outline" style={{padding: '0.4rem 0.8rem', fontSize: '0.8rem', marginRight: '0.5rem'}}>Edit</button>
-                      <button className="btn btn-danger" style={{padding: '0.4rem 0.8rem', fontSize: '0.8rem'}}>Delete</button>
+                      <button className="btn btn-outline" style={{padding: '0.4rem 0.8rem', fontSize: '0.8rem', marginRight: '0.5rem'}} onClick={() => navigate(`/vendor/edit-event/${event._id}`)}>Edit</button>
+                      <button className="btn btn-danger" style={{padding: '0.4rem 0.8rem', fontSize: '0.8rem'}} onClick={() => handleDeleteEvent(event._id)}>Delete</button>
                     </td>
                   </tr>
                 ))}
@@ -138,17 +154,19 @@ const VendorDashboard = () => {
                           <div style={{ display: 'flex', gap: '0.5rem' }}>
                             <button
                               className="btn btn-primary"
-                              style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
+                              style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', opacity: processingBookingId === booking._id ? 0.5 : 1 }}
                               onClick={() => handleStatusChange(booking._id, 'confirmed')}
+                              disabled={processingBookingId === booking._id}
                             >
-                              Confirm
+                              {processingBookingId === booking._id ? '...' : 'Confirm'}
                             </button>
                             <button
                               className="btn btn-danger"
-                              style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
+                              style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', opacity: processingBookingId === booking._id ? 0.5 : 1 }}
                               onClick={() => handleStatusChange(booking._id, 'cancelled')}
+                              disabled={processingBookingId === booking._id}
                             >
-                              Cancel
+                              {processingBookingId === booking._id ? '...' : 'Cancel'}
                             </button>
                           </div>
                         ) : (

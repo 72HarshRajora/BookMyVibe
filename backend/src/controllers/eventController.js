@@ -71,9 +71,81 @@ const getEventById = async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch event' });
   }
 };
+// @desc    Update an event
+// @route   PUT /api/events/:id
+// @access  Private/Vendor
+const updateEvent = async (req, res) => {
+  const { title, description, price, category, availability } = req.body;
+  try {
+    let event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+    
+    // Check if user is the vendor of the event
+    if (event.vendor.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Not authorized to update this event' });
+    }
+
+    let imageUrl = event.imageUrl;
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: 'bookmyvibe',
+      });
+      imageUrl = result.secure_url;
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch (err) {
+        console.error('Failed to delete local image file:', err);
+      }
+    }
+
+    event = await Event.findByIdAndUpdate(
+      req.params.id,
+      {
+        title,
+        description,
+        price: Number(price),
+        category,
+        availability,
+        imageUrl,
+      },
+      { new: true }
+    );
+
+    res.json({ message: 'Event updated successfully', event });
+  } catch (error) {
+    console.error('Error updating event:', error);
+    res.status(500).json({ message: 'Failed to update event' });
+  }
+};
+
+// @desc    Delete an event
+// @route   DELETE /api/events/:id
+// @access  Private/Vendor
+const deleteEvent = async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+    
+    if (event.vendor.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Not authorized to delete this event' });
+    }
+
+    await Event.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Event removed successfully' });
+  } catch (error) {
+    console.error('Error deleting event:', error);
+    res.status(500).json({ message: 'Failed to delete event' });
+  }
+};
 
 module.exports = {
   createEvent,
   getEvents,
-  getEventById
+  getEventById,
+  updateEvent,
+  deleteEvent
 };
