@@ -12,7 +12,12 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://bookmyvibepro.vercel.app/',
+  origin: [
+    process.env.FRONTEND_URL,
+    'http://localhost:5173',
+    'https://bookmyvibepro.vercel.app',
+    'https://bookmyvibepro.vercel.app/'
+  ].filter(Boolean),
   credentials: true
 }));
 app.use(express.json());
