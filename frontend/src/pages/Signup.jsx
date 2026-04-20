@@ -30,7 +30,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/send-otp', { email: formData.email, role });
+      await axios.post('https://bookmyvibe.onrender.com/api/auth/send-otp', { email: formData.email, role });
       toast.success('OTP sent to your email');
       setOtpSent(true);
     } catch (err) {
@@ -44,7 +44,7 @@ const Signup = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/signup', {
+      await axios.post('https://bookmyvibe.onrender.com/api/auth/signup', {
         ...formData,
         role,
         otp,

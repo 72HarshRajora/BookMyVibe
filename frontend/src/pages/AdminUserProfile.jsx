@@ -15,7 +15,7 @@ const AdminUserProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/admin/users/${id}`, { withCredentials: true });
+        const res = await axios.get(`https://bookmyvibe.onrender.com/api/admin/users/${id}`, { withCredentials: true });
         setProfileData(res.data);
       } catch (err) {
         console.error('Error fetching profile:', err);

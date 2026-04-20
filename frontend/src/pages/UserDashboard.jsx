@@ -20,7 +20,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users/profile', { withCredentials: true });
+        const res = await axios.get('https://bookmyvibe.onrender.com/api/users/profile', { withCredentials: true });
         setProfile(res.data);
         setEditData({ name: res.data.name || '', phone: res.data.phone || '' });
       } catch (err) {
@@ -38,7 +38,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/bookings/my-bookings', {
+        const res = await axios.get('https://bookmyvibe.onrender.com/api/bookings/my-bookings', {
           withCredentials: true
         });
         setBookings(res.data.bookings || []);
@@ -64,7 +64,7 @@ const UserDashboard = () => {
     }
     setSaving(true);
     try {
-      const res = await axios.put('http://localhost:5000/api/users/profile', editData, { withCredentials: true });
+      const res = await axios.put('https://bookmyvibe.onrender.com/api/users/profile', editData, { withCredentials: true });
       setProfile(res.data);
       login(res.data); // Update AuthContext + localStorage
       setEditing(false);

@@ -23,7 +23,7 @@ const EventDetail = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/events/${id}`);
+        const res = await axios.get(`https://bookmyvibe.onrender.com/api/events/${id}`);
         setEvent(res.data.event);
       } catch (err) {
         // Fallback for UI
@@ -71,7 +71,7 @@ const EventDetail = () => {
     }
     
     try {
-      await axios.post('http://localhost:5000/api/bookings', {
+      await axios.post('https://bookmyvibe.onrender.com/api/bookings', {
         eventId: event._id,
         ...bookingData
       }, { withCredentials: true });

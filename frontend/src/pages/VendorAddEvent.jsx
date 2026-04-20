@@ -43,7 +43,7 @@ const VendorAddEvent = () => {
         data.append('image', imageFile);
       }
 
-      await axios.post('http://localhost:5000/api/events', data, {
+      await axios.post('https://bookmyvibe.onrender.com/api/events', data, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data'

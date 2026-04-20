@@ -24,7 +24,7 @@ const BookingEdit = () => {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/bookings/${id}`, { withCredentials: true });
+        const res = await axios.get(`https://bookmyvibe.onrender.com/api/bookings/${id}`, { withCredentials: true });
         const b = res.data.booking;
         setBooking(b);
         setFormData({
@@ -59,7 +59,7 @@ const BookingEdit = () => {
 
     setSaving(true);
     try {
-      await axios.put(`http://localhost:5000/api/bookings/${id}`, formData, { withCredentials: true });
+      await axios.put(`https://bookmyvibe.onrender.com/api/bookings/${id}`, formData, { withCredentials: true });
       toast.success('Booking updated successfully!');
       navigate('/profile');
     } catch (err) {
@@ -73,7 +73,7 @@ const BookingEdit = () => {
     if (!window.confirm('Are you sure you want to cancel and delete this booking? This cannot be undone.')) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`, { withCredentials: true });
+      await axios.delete(`https://bookmyvibe.onrender.com/api/bookings/${id}`, { withCredentials: true });
       toast.success('Booking deleted successfully');
       navigate('/profile');
     } catch (err) {

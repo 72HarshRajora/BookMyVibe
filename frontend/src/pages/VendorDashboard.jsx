@@ -17,8 +17,8 @@ const VendorDashboard = () => {
     const fetchVendorData = async () => {
       try {
         const [eventsRes, bookingsRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/vendor/events', { withCredentials: true }).catch(() => ({data: {events: []}})),
-          axios.get('http://localhost:5000/api/vendor/bookings', { withCredentials: true }).catch(() => ({data: {bookings: []}}))
+          axios.get('https://bookmyvibe.onrender.com/api/vendor/events', { withCredentials: true }).catch(() => ({data: {events: []}})),
+          axios.get('https://bookmyvibe.onrender.com/api/vendor/bookings', { withCredentials: true }).catch(() => ({data: {bookings: []}}))
         ]);
         
         setEvents(eventsRes.data.events || []);
@@ -34,7 +34,7 @@ const VendorDashboard = () => {
 
   const handleStatusChange = async (bookingId, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/vendor/bookings/${bookingId}/status`, { status: newStatus }, { withCredentials: true });
+      await axios.put(`https://bookmyvibe.onrender.com/api/vendor/bookings/${bookingId}/status`, { status: newStatus }, { withCredentials: true });
       setBookings(bookings.map(b => b._id === bookingId ? { ...b, status: newStatus } : b));
       toast.success(`Booking ${newStatus} successfully`);
     } catch (err) {

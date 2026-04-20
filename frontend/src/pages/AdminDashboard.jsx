@@ -19,7 +19,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/admin/dashboard', { withCredentials: true });
+        const res = await axios.get('https://bookmyvibe.onrender.com/api/admin/dashboard', { withCredentials: true });
         setStats(res.data.stats || { users: 0, vendors: 0, bookings: 0 });
         setUsers(res.data.users || []);
       } catch (err) {
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   const handleDelete = async (userId, name) => {
     if (!window.confirm(`Are you sure you want to delete ${name}?`)) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, { withCredentials: true });
+      await axios.delete(`https://bookmyvibe.onrender.com/api/admin/users/${userId}`, { withCredentials: true });
       setUsers(users.filter(u => u._id !== userId));
       setStats(prev => ({ ...prev, [activeTab === 'users' ? 'users' : 'vendors']: prev[activeTab === 'users' ? 'users' : 'vendors'] - 1 }));
       toast.success('User deleted successfully');

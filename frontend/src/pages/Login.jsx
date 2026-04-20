@@ -23,7 +23,7 @@ const Login = () => {
     setLoading(true);
     try {
       // Assuming backend is running on port 5000
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData, {
+      const res = await axios.post('https://bookmyvibe.onrender.com/api/auth/login', formData, {
         withCredentials: true
       });
       
