@@ -13,6 +13,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminUserProfile from './pages/AdminUserProfile';
 import BookingEdit from './pages/BookingEdit';
 import VendorEditEvent from './pages/VendorEditEvent';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -25,13 +26,41 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/events" element={<Events />} />
           <Route path="/events/:id" element={<EventDetail />} />
-          <Route path="/profile" element={<UserDashboard />} />
-          <Route path="/vendor/dashboard" element={<VendorDashboard />} />
-          <Route path="/vendor/add-event" element={<VendorAddEvent />} />
-          <Route path="/vendor/edit-event/:id" element={<VendorEditEvent />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/profile/:id" element={<AdminUserProfile />} />
-          <Route path="/booking/edit/:id" element={<BookingEdit />} />
+          <Route path="/profile" element={
+            <ProtectedRoute allowedRoles={['user']}>
+              <UserDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/vendor/dashboard" element={
+            <ProtectedRoute allowedRoles={['vendor']}>
+              <VendorDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/vendor/add-event" element={
+            <ProtectedRoute allowedRoles={['vendor']}>
+              <VendorAddEvent />
+            </ProtectedRoute>
+          } />
+          <Route path="/vendor/edit-event/:id" element={
+            <ProtectedRoute allowedRoles={['vendor']}>
+              <VendorEditEvent />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/dashboard" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/profile/:id" element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <AdminUserProfile />
+            </ProtectedRoute>
+          } />
+          <Route path="/booking/edit/:id" element={
+            <ProtectedRoute>
+              <BookingEdit />
+            </ProtectedRoute>
+          } />
         </Routes>
       </div>
       <Toaster position="top-right" />
