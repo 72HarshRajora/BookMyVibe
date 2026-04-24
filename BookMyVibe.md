@@ -1,8 +1,7 @@
-Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Booking Marketplace platform where Users can book services, Vendors can manage events/services, and Admin can control the entire system.
 
 ---
 
-# 🧱 1. TECH STACK
+# 1. TECH STACK
 
 * Frontend: React.js (with Vite)
 * Backend: Node.js + Express.js
@@ -14,7 +13,7 @@ Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Bo
 
 ---
 
-# 🎨 2. UI REQUIREMENTS (STRICT)
+# 2. UI REQUIREMENTS (STRICT)
 
 * DO NOT use Tailwind
 * Use **pure CSS3 (external CSS)**
@@ -27,7 +26,7 @@ Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Bo
 
 ---
 
-# 📱 3. RESPONSIVENESS
+# 3. RESPONSIVENESS
 
 * Fully responsive (desktop, tablet, mobile)
 * Mobile font size must be **10–15% smaller**
@@ -36,7 +35,7 @@ Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Bo
 
 ---
 
-# 👥 4. USER ROLES (VERY IMPORTANT)
+# 4. USER ROLES (VERY IMPORTANT)
 
 ## 1. User
 
@@ -46,7 +45,7 @@ Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Bo
 
 ---
 
-# 🧑‍💼 5. USER FEATURES
+# 5. USER FEATURES
 
 * Signup + OTP verification
 * Login (JWT in cookies)
@@ -71,7 +70,7 @@ Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Bo
 
 ---
 
-# 🧑‍🍳 6. VENDOR FEATURES (CORE PART)
+# 6. VENDOR FEATURES (CORE PART)
 
 * Signup as Vendor
 * Login
@@ -94,7 +93,7 @@ Create a full-stack MERN application named **"BookMyVibe"**, a complete Event Bo
 
 ---
 
-# 🛠️ 7. ADMIN PANEL (VERY IMPORTANT)
+# 7. ADMIN PANEL (VERY IMPORTANT)
 
 ## Dashboard:
 
@@ -118,7 +117,7 @@ Each section must have:
 
 ---
 
-## 📊 Table Features:
+## Table Features:
 
 * Show only **15 rows initially**
 * “View More” button → load next 15 rows
@@ -127,7 +126,7 @@ Each section must have:
 
 ---
 
-## 📄 Profile View (User/Vendor)
+## Profile View (User/Vendor)
 
 ### User Profile:
 
@@ -145,7 +144,7 @@ Each section must have:
 
 ---
 
-## ⚙️ Admin Controls:
+## Admin Controls:
 
 * Delete user/vendor
 * Modify user/vendor data
@@ -156,7 +155,7 @@ Each section must have:
 
 ---
 
-# 🔐 8. ADMIN SIGNUP SECURITY
+# 8. ADMIN SIGNUP SECURITY
 
 * Admin signup option available
 * Before creating admin:
@@ -167,7 +166,7 @@ Each section must have:
 
 ---
 
-# 🗄️ 9. DATABASE MODELS
+# 9. DATABASE MODELS
 
 Create models:
 
@@ -185,7 +184,7 @@ Include:
 
 ---
 
-# ☁️ 10. CLOUDINARY IMAGE STORAGE
+# 10. CLOUDINARY IMAGE STORAGE
 
 ## Requirements:
 
@@ -203,7 +202,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 
 ---
 
-# 📧 11. EMAIL SYSTEM (VERY IMPORTANT)
+# 11. EMAIL SYSTEM (VERY IMPORTANT)
 
 ## Use Nodemailer with Gmail SMTP
 
@@ -236,7 +235,7 @@ Include:
 
 ---
 
-# 🔐 12. GMAIL APP PASSWORD SETUP (INCLUDE IN README)
+# 12. GMAIL APP PASSWORD SETUP (INCLUDE IN README)
 
 Explain:
 
@@ -246,7 +245,7 @@ Explain:
 
 ---
 
-# 🔄 13. BOOKING FLOW
+# 13. BOOKING FLOW
 
 User → select event → fill details → OTP verify → booking created
 → confirmation email to user
@@ -254,7 +253,7 @@ User → select event → fill details → OTP verify → booking created
 
 ---
 
-# ✏️ 14. BOOKING EDIT FEATURE
+# 14. BOOKING EDIT FEATURE
 
 * User can update:
 
@@ -264,7 +263,7 @@ User → select event → fill details → OTP verify → booking created
 
 ---
 
-# 🔌 15. API DESIGN
+# 15. API DESIGN
 
 * Auth routes
 * Vendor routes
@@ -279,7 +278,7 @@ Use middleware:
 
 ---
 
-# 📁 16. PROJECT STRUCTURE
+# 16. PROJECT STRUCTURE
 
 Include:
 
@@ -290,7 +289,7 @@ Include:
 
 ---
 
-# 🚀 17. FINAL REQUIREMENTS
+# 17. FINAL REQUIREMENTS
 
 * Clean code
 * Proper error handling
@@ -301,7 +300,7 @@ Include:
 
 ---
 
-# 🎯 FINAL GOAL
+# FINAL GOAL
 
 Build a **complete production-ready platform** with:
 
