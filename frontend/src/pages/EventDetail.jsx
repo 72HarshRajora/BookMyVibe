@@ -26,16 +26,7 @@ const EventDetail = () => {
         const res = await axios.get(`https://bookmyvibe.onrender.com/api/events/${id}`);
         setEvent(res.data.event);
       } catch (err) {
-        // Fallback for UI
-        setEvent({
-          _id: id,
-          title: 'Premium Event Service',
-          description: 'High quality service for your perfect event. We handle everything with care and professionalism.',
-          price: 15000,
-          category: 'Service',
-          vendor: { name: 'Super Vendor' },
-          image: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?auto=format&fit=crop&q=80&w=800'
-        });
+        toast.error("Something went wrong.")
       } finally {
         setLoading(false);
       }
