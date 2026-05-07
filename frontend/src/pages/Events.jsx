@@ -16,12 +16,6 @@ const Events = () => {
         setEvents(res.data.events || []);
       } catch (err) {
         console.error('Error fetching events:', err);
-        // Fallback dummy data for UI development if backend is not ready
-        setEvents([
-          { _id: '1', title: 'Wedding DJ Setup', price: 15000, category: 'DJ', vendor: { name: 'DJ Snake' } },
-          { _id: '2', title: 'Premium Decor', price: 25000, category: 'Decorator', vendor: { name: 'Royal Events' } },
-          { _id: '3', title: 'Catering Services', price: 50000, category: 'Food', vendor: { name: 'Taj Catering' } },
-        ]);
       } finally {
         setLoading(false);
       }
