@@ -25,7 +25,6 @@ const UserDashboard = () => {
         setEditData({ name: res.data.name || '', phone: res.data.phone || '' });
       } catch (err) {
         console.error('Failed to fetch profile:', err);
-        // Fallback to context user
         setProfile(user);
         setEditData({ name: user?.name || '', phone: user?.phone || '' });
       } finally {
